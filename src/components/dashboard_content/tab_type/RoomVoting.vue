@@ -88,7 +88,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
-import { useWebSocket } from '../../../webSocket.js'; 
+import { useWebSocket } from '../../../websocket.js'; 
 
 const props = defineProps({
   ticket: Object,
