@@ -57,24 +57,8 @@ function onJoin() {
     router.push({ path: '/dashboard', query: { username: username.value } })
   }
 }
-async function handleLogin() {
-  try {
-    const response = await fetch('https://agileplan-backend-production.up.railway.app/api/v1/login', {
-      method: 'GET', 
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    if (data.redirect === '/dashboard') {
-      router.push('/dashboard');
-    } else {
-      alert(data.message || 'Login failed');
-    }
-  } catch (err) {
-    alert('Login failed');
-  }
+function handleLogin() {
+  window.location.href = 'https://agileplan-backend-production.up.railway.app/api/v1/login';
 }
 function submitDummy() {
   if (dummyName.value) {
