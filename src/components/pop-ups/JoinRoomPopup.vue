@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref, defineEmits, defineProps, onMounted, onUnmounted } from 'vue';
-import { useWebSocket } from '../../webSocket.js';
+import { useWebSocket } from '../../websocket.js';
 const props = defineProps({
   playerName: {
     type: String,

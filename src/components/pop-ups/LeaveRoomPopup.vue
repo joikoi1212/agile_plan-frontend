@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref, defineEmits, defineProps } from 'vue';
-import { useWebSocket } from '../../webSocket.js';
+import { useWebSocket } from '../../websocket.js';
 
 const visible = ref(true);
 const emit = defineEmits(['close']);
