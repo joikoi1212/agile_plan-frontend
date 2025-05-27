@@ -8,7 +8,7 @@ export function useWebSocket() {
   const connect = () => {
     if (ws.value) return;
 
-    ws.value = new WebSocket('ws://localhost:8088/ws');
+    ws.value = new WebSocket('wss://agileplan-backend-production.up.railway.app/ws');
 
     ws.value.onopen = () => {
       console.log('WebSocket connected');

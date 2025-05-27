@@ -58,7 +58,7 @@ function onJoin() {
   }
 }
 function handleLogin() {
-  window.location.href = 'http://localhost:8088/api/v1/login'
+  window.location.href = 'https://agileplan-backend-production.up.railway.app/api/v1/login'
 }
 function submitDummy() {
   if (dummyName.value) {

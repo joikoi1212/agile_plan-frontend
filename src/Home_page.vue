@@ -23,7 +23,7 @@ function showTempNotification(msg) {
 }
 const fetchTickets = async () => {
   try {
-    const response = await axios.get('http://localhost:8088/api/v1/tickets') 
+    const response = await axios.get('https://agileplan-backend-production.up.railway.app/api/v1/tickets') 
     tickets.value = response.data.issues
   } catch (error) {
     console.error('Error fetching tickets:', error)

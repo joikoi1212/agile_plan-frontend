@@ -78,7 +78,7 @@ function logout() {
 }
 const fetchSession = async () => {
   try {
-    const response = await fetch('http://localhost:8088/api/v1/session', {
+    const response = await fetch('https://agileplan-backend-production.up.railway.app/api/v1/session', {
       credentials: 'include',
     });
     const data = await response.json();

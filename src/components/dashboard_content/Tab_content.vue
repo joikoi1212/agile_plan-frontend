@@ -323,7 +323,7 @@ function handleTicketAssigned(message) {
     if (ticket) {
       roomTab.activeTicket = { ...ticket, id: roomTab.id };
     } else {
-      fetch(`http://localhost:8088/api/v1/tickets?key=${message.ticketKey}`)
+      fetch(`https://agileplan-backend-production.up.railway.app/api/v1/tickets?key=${message.ticketKey}`)
         .then(res => {
           if (!res.ok) throw new Error('Network response was not ok');
           return res.json();
