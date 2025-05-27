@@ -171,7 +171,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import DeleteRoomPopup from '../pop-ups/DeleteRoomPopup.vue';
 import LeaveRoomPopup from '../pop-ups/LeaveRoomPopup.vue';
-import { useWebSocket } from '../../webSocket.js';
+import { useWebSocket } from '../../websocket.js';
 import Notification from '../pop-ups/Notification.vue';
 import RoomVoting from './tab_type/RoomVoting.vue';
 
