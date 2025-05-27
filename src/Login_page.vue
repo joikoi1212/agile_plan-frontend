@@ -60,7 +60,7 @@ function onJoin() {
 async function handleLogin() {
   try {
     const response = await fetch('https://agileplan-backend-production.up.railway.app/api/v1/login', {
-      method: 'POST', 
+      method: 'GET', 
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
