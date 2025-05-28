@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="nav-inner">
       <div class="left-group">
-         <a href="http://localhost:5173" class="brand-link">
+         <a href="https://agile-plan-backend.vercel.app/" class="brand-link">
           <img src="../assets/logo.png" class="logo-img" />
           <span class="title navbar-brand mb-0 h1">PokerPlan</span>
         </a>
