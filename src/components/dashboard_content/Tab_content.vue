@@ -122,7 +122,6 @@
                         variant="success"
                         size="lg"
                         class="start-vote-btn"
-                        :disabled="!tab.activeTicket"
                         @click="startVote(tab)"
                       >
                         Start Vote
