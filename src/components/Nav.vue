@@ -54,7 +54,7 @@ const route = useRoute();
 const clickedProfile = ref(false);
 const showPopup = ref(false);
 const emit = defineEmits(['create-room', 'show-join-popup']);
-const username = ref(route.query.username || '');
+const username = ref(route.query.username || 'Guest_User');
 const avatar = ref('');
 const { connect, sendMessage, addListener, isConnected } = useWebSocket();
 
@@ -86,6 +86,10 @@ const fetchSession = async () => {
     avatar.value = data.avatar;
   } catch (error) {
     console.error('Failed to fetch session data:', error);
+    // Set default guest username if session fetch fails
+    if (!username.value) {
+      username.value = 'Guest_User';
+    }
   }
 };
 
@@ -135,7 +139,9 @@ const createRoom = (roomName, playerName) => {
 
 const handleRoomPopupSubmit = (roomName) => {
   showPopup.value = false;
-  createRoom(roomName, username.value);
+  // Ensure we have a username, default to Guest_User if not set
+  const playerName = username.value || 'Guest_User';
+  createRoom(roomName, playerName);
 };
 
 const clearTabHistoryAndRedirect = () => {
@@ -152,8 +158,14 @@ watch(
   { deep: true }
 );
 
-onMounted(() => {
-  if (!route.query.username) fetchSession();
+onMounted(async () => {
+  if (!route.query.username) {
+    await fetchSession();
+  }
+  // Ensure we have a username after session fetch or route check
+  if (!username.value) {
+    username.value = 'Guest_User';
+  }
   connect();
 
   addListener('roomCreated', (message) => {

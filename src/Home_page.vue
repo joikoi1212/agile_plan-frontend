@@ -74,10 +74,16 @@ const handleCloseJoinRoomPopup = () => {
 };
 
 onMounted(() => {
+  // Only fetch tickets if user is authenticated (has a username from query params)
+  // Guests can still use the app without tickets
   if (!route.query.username) {
     fetchTickets();
   }
-
+  
+  // Ensure we have a username for guests
+  if (!username.value) {
+    username.value = 'Guest_User';
+  }
 });
 
 onUnmounted(() => {

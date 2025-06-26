@@ -136,14 +136,7 @@ function handleVotesRevealed(msg) {
   votes.value = msg.votes;
   revealed.value = true;
 
-  if (props.isAdmin) {  function handleReturnToRoom(message) {
-    const roomTab = tabs.value.find(tab => tab.id === message.roomUUID);
-    if (roomTab) {
-      roomTab.voting = false;
-      roomTab.activeTicket = null; // Hide the active ticket after voting
-      showTempNotification("Returned to room view.");
-    }
-  }
+  if (props.isAdmin) {
     sendMessage({
       action: 'addRoomHistory',
       roomUUID: props.ticket.id,
@@ -151,6 +144,15 @@ function handleVotesRevealed(msg) {
       date: new Date().toISOString(),
       media: media.value 
     });
+  }
+}
+
+function handleReturnToRoom(message) {
+  const roomTab = tabs.value.find(tab => tab.id === message.roomUUID);
+  if (roomTab) {
+    roomTab.voting = false;
+    roomTab.activeTicket = null; // Hide the active ticket after voting
+    showTempNotification("Returned to room view.");
   }
 }
 

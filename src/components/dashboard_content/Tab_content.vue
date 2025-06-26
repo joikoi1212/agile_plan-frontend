@@ -69,9 +69,9 @@
               </div>
               </div>
               <transition name="fade" mode="out-in">
-                <div v-if="tab.voting && tab.activeTicket" :key="'voting'">
+                <div v-if="tab.voting" :key="'voting'">
                   <RoomVoting
-                    :ticket="tab.activeTicket"
+                    :ticket="tab.activeTicket || { key: 'No Ticket', summary: 'Voting without specific ticket', id: tab.id }"
                     :players="tab.players"
                     :myPlayerId="myPlayerId"
                     :isAdmin="getIsAdmin(tab)"
@@ -115,7 +115,8 @@
                         <div>{{ tab.activeTicket.summary }}</div>
                       </div>
                       <div class="room-ticket-info" v-else>
-                        <h4>No active ticket.</h4>
+                        <h4>No active ticket - Ready for voting</h4>
+                        <div>You can start voting even without assigning a ticket.</div>
                       </div>
                       <b-button
                         v-if="getIsAdmin(tab)"
