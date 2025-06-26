@@ -85,7 +85,6 @@ const fetchSession = async () => {
     username.value = data.username;
     avatar.value = data.avatar;
   } catch (error) {
-    console.error('Failed to fetch session data:', error);
     // Set default guest username if session fetch fails
     if (!username.value) {
       username.value = 'Guest_User';
@@ -112,7 +111,6 @@ function tryShowJoinRoom() {
 
 const createRoom = (roomName, playerName) => {
   if (!isConnected.value) {
-    console.error('WebSocket is not connected. Retrying...');
     const retryInterval = setInterval(() => {
       if (isConnected.value) {
         clearInterval(retryInterval);
@@ -122,7 +120,6 @@ const createRoom = (roomName, playerName) => {
           playerName: playerName,
         };
         sendMessage(message);
-        console.log('WebSocket message sent after retry.');
       }
     }, 100);
     return;
@@ -153,7 +150,6 @@ const clearTabHistoryAndRedirect = () => {
 watch(
   () => props.tabs,
   (newTabs) => {
-    console.log('Nav.vue received updated tabs:', newTabs);
   },
   { deep: true }
 );

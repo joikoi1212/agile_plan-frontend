@@ -63,6 +63,7 @@ function handleLogin() {
 function submitDummy() {
   if (dummyName.value) {
     router.push({ path: '/dashboard', query: { username: dummyName.value } })
+    
   }
 }
 </script>

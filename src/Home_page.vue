@@ -26,12 +26,10 @@ const fetchTickets = async () => {
     const response = await axios.get('https://agileplan-backend-production.up.railway.app/api/v1/tickets') 
     tickets.value = response.data.issues
   } catch (error) {
-    console.error('Error fetching tickets:', error)
   }
 }
 
 const handleJoinRoomError = (msg) => {
-  console.error('Join room error [HOME]:', msg);
   showTempNotification("No room found with this key. Please check the key and try again.");
 };
 
@@ -42,9 +40,6 @@ const handleClearTabHistory = () => {
 const handleTicketSelected = (ticket) => {
   if (ticket) {
     selectedTicket.value = ticket; 
-    console.log('Selected ticket HOME PAGE:', selectedTicket.value); 
-  } else {
-    console.error('No ticket selected');
   }
 };
 
@@ -52,19 +47,14 @@ const handleCreateRoom = (roomDetails) => {
   newRoom.value = roomDetails; 
   currentUserId.value = roomDetails.player.id; 
   username.value = roomDetails.player.name; 
-  console.log('Room created HOME PAGE:', newRoom.value);
-  console.log('Room ID:', newRoom.value.id);
-  console.log('Current User ID:', currentUserId.value);
 };
 
 const handleShowJoinPopup = (emittedUsername) => {
-  console.log('Emitted username:', emittedUsername);
   username.value = emittedUsername || 'Guest_User'; 
   showJoinRoomPopup.value = true;
 };
 
 const confirmJoinRoom = (roomDetails) => {
-  console.log('Room joined:', roomDetails);
   currentUserId.value = roomDetails.player.id;
   username.value = roomDetails.player.name;
 };
@@ -93,6 +83,7 @@ onUnmounted(() => {
 
 <template>
    <Nav  class="nav" @clear-tab-history="handleClearTabHistory"  @create-room="handleCreateRoom" @show-join-popup="handleShowJoinPopup" ></Nav> 
+   
    <div class="main">
     <Sidebar class="sidebar" :tickets="tickets" @ticket-selected="handleTicketSelected" />
     <Tab_content class="tab-content" ref="tabContentRef" :ticketSelected="selectedTicket" :username="username" :showJoinRoomPopup="showJoinRoomPopup" :newRoom="newRoom" :myPlayerId="currentUserId" @closeJoinRoomPopup="handleCloseJoinRoomPopup" @joinRoomError="handleJoinRoomError"/>

@@ -267,7 +267,6 @@ function handlePlayerJoined(message) {
 
 function handleRoomJoined(message) {
   if (message.action === 'roomJoined') {
-    console.log("[handleRoomJoined] message.room.id:", message.room.id, "message.room.key:", message.room.key);
     let roomTab = tabs.value.find(tab => tab.key === message.room.key);
     const ticketKey = message.room.current_ticket;
     let ticket = null;
@@ -275,7 +274,6 @@ function handleRoomJoined(message) {
       ticket = props.tickets.find(t => t.key === ticketKey);
     }
     if (!roomTab) {
-      console.log("[handleRoomJoined] Creating new tab with id:", message.room.id, "key:", message.room.key);
         tabs.value = tabs.value.filter(tab => tab.type !== 'room');
       tabs.value.push({
         id: message.room.id,
@@ -290,7 +288,6 @@ function handleRoomJoined(message) {
         activeTicket: ticketKey ? (ticket || { key: ticketKey, summary: "Loading...", id: message.room.id }) : null,
       });
     } else {
-      console.log("[handleRoomJoined] Updating existing tab with id:", roomTab.id, "key:", roomTab.key);
       roomTab.players = message.players.map(player => ({
         id: player.id,
         name: player.name,
@@ -300,7 +297,6 @@ function handleRoomJoined(message) {
         roomTab.activeTicket = ticket || { key: ticketKey, summary: "Loading...", id: message.room.id };
       }
     }
-    console.log("[handleRoomJoined] Current tabs:", tabs.value.map(tab => ({ id: tab.id, key: tab.key })));
   }
 }
 
@@ -313,7 +309,6 @@ function handleReturnToRoom(message) {
   }
 }
 function handleTicketAssigned(message) {
-  console.log("Received ticketAssigned:", message);
   let roomTab = tabs.value.find(tab => tab.id === message.roomKey);
   if (!roomTab) {
     roomTab = tabs.value.find(tab => tab.key === message.roomKey);
@@ -348,7 +343,6 @@ function onDragOver(event) {
 }
 
 function startVote(tab) {
-  console.log("Starting vote for room:", tab.id);
   sendMessage({
     action: 'start_vote',
     roomUUID: tab.id,
@@ -358,9 +352,7 @@ function startVote(tab) {
 function handleVoteStarted(message) {
   const roomTab = tabs.value.find(tab => tab.id === message.roomUUID);
   if (roomTab) {
-    console.log("[handleVoteStarted] Found tab:", roomTab);
     roomTab.voting = true;
-    console.log("[handleVoteStarted] activeTicket:", roomTab.activeTicket);
   }
 }
 
